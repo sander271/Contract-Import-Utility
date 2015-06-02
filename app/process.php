@@ -5,11 +5,14 @@
  * Date: 6/2/2015
  * Time: 2:47 PM
  */
+session_start();
 function uploadFile(){
+    global $success;
     $target_dir = "CSV/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+    $success = false;
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 5000000) {
         echo "Sorry, your file is too large.";
@@ -27,10 +30,17 @@ function uploadFile(){
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+            $_SESSION['filename'] = $_FILES["fileToUpload"]["name"];
+            $success = true;
         } else {
             echo "Sorry, there was an error uploading your file.";
+            $success = false;
         }
     }
+}
+function processFile(){
+    include "fileparser.php";
+    $parser = new FileParser($_SESSION['filename']);
 }
 ?>
 <!doctype html>
@@ -63,9 +73,18 @@ function uploadFile(){
     </style>
 </head>
 <body>
-    <h1>This is where the file will be pasred.</h1>
+    <h1>This is where the file will be parsed.</h1>
     <?php uploadFile() ?>
     <br/>
-    <input type="button" value="back" onclick="location.replace('enter.php')">
+    <?php
+    global $success;
+    if(!$success){
+        echo "<input type=\"button\" value=\"back\" onclick=\"location.replace('enter.php')\">";
+    }
+    else{
+        processFile();
+    }
+    ?>
+
 </body>
 </html>

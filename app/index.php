@@ -1,3 +1,12 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: asanders
+ * Date: 6/2/2015
+ * Time: 2:13 PM
+ */
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,12 +48,3 @@
     </form>
 </body>
 </html>
-<?php
-/**
- * Created by PhpStorm.
- * User: asanders
- * Date: 6/2/2015
- * Time: 2:13 PM
- */
-
-?>

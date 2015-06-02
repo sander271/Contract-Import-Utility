@@ -5,7 +5,10 @@
  * Date: 6/2/2015
  * Time: 2:43 PM
  */
-
+session_start();
+foreach ($_REQUEST as $key => $value){
+    $_SESSION[$key] = $value;
+}
 ?>
 <!doctype html>
 <html lang="en">

@@ -1,0 +1,60 @@
+CSV Field Name,Sample Value,Required,Contract Entity Fields,Comments
+Customer Name,ABC Law Firm,Y,AccountID,Must match name of an existing account in Autotask
+Contract Name,Laptop Repair Services,Y,ContractName,Must be unique
+Description,Fixing ABC's Laptops,N,Description,
+Contract Type,Time and Materials,Y,ContractType,"Time and Materials', 'Recurring', 'Incident',  'Block Hour', 'Retainer' or 'Fixed Price'"
+External Contract Number,123456,N,ContractNumber,
+Start Date,4/1/2015,Y,Start date,
+End Date,4/1/2016,Y,EndDate,Must be after Start Date
+Billing Preferences,Reconcile,Y*,BillingPreference,"Required for 'Time and Materials', 'Block', 'Retainer' and 'Incident' contract types. 
+Allowed Values: 'Reconcile', 'Timesheet' or 'Immediately'"
+Estimated Revenue,4000.00,Y*,EstimatedRevenue,"Required for all contract types, except for 'Recurring'"
+Contract Period Type,Monthly,Y*,ContractPeriodType,"Required for 'Recurring' contract type; 
+Allowed values: 'Monthly', 'Quarterly', 'Semi-Annual' or 'Yearly'"
+Setup Fee,1000.00,N,SetupFee,Can only be used for 'Recurring' contract type
+Time Reporting Requires S/T Times,Yes,N,TimeReportingRequiresStartAndStopTimes,Yes' or 'No' (defaults to 'No')
+Default Servicedesk Contract,Yes,Y,IsDefaultContract,Yes' or 'No' 
+Role Rates ,Exec. Management|250.00;IT:Technician II|120.00,N,,"Can only be used for 'Time and material', 'Retainer' or 'Fixed Price' contracts.
+A list of pipe-delimited values, separated by a semicolon. 
+Each entry in the list consists of the follwoing values:
+Role Name | Contract Hourly Billing Rate
+The Role Name must match an existing role name. "
+Recurring Services ,IT:Backup DR|0.00|50.00|1;IT:Hosted Email|50.00|150.00|7,N,,"Can only be used for 'Recurring' contracts.
+A list of pipe-delimited values, separated by a semicolon. 
+Each entry in the list consists of the follwoing values:
+Service Name | Unit Cost | Unit Price | Units
+The Service Name must match an existing service name. "
+Block Hour Rates,Exec. Management|2.50;IT:Technician II|1.50,N,,"Can only be used for 'Block Hour' contracts.
+A list of pipe-delimited values, separated by a semicolon. 
+Each entry in the list consists of the follwoing values:
+Role Name | Contract Block Hour Multiplier
+The Role Name must match an existing role name.  "
+Block Hour Purchases,05182015|05212015|7.00|9.50|True|False;06012015|06212015|9.00|8.50|True|True,N,,"Can only be used for 'Block Hour' contracts.
+A list of pipe-delimited values, separated by a semicolon. 
+Each entry in the list consists of the follwoing values:
+Start Date | End Date | Hours Purchased | Hourly Rate | Active | Billed
+The dates have to be within the contract start/end dates.
+The date format is MMDDYYYY.  
+Active and Billed can be 'True' or 'False'."
+Retainer Purchases,05182015|05212015|125.00|True|True;06012015|06212015|75.00|True|False,N,,"Can only be used for 'Retainer' contracts.
+A list of pipe-delimited values, separated by a semicolon. 
+Each entry in the list consists of the follwoing values:
+Start Date | End Date | Amount Purchased | Active | Billed
+The dates have to be within the contract start/end dates.
+The date format is MMDDYYYY.  
+Active and Billed can be 'True' or 'False'."
+Ticket Purchases,05182015|05212015|7|50.00|True|False;06012015|06212015|3|40.00|True|True,N,,"Can only be used for 'Incident' contracts.
+A list of pipe-delimited values, separated by a semicolon. 
+Each entry in the list consists of the follwoing values:
+Start Date | End Date | Tickets Purchased | Per ticket Rate | Active | Billed
+The dates have to be within the contract start/end dates.
+The date format is MMDDYYYY.  
+Active and Billed can be 'True' or 'False'."
+Milestones,milestone 1|1000.00|05212015|Discount;milestone 2|1500.00|06012015|Discount,N,,"Can only be used for 'Fixed Price' contracts.
+A list of pipe-delimited values, separated by a semicolon. 
+Each entry in the list consists of the follwoing values:
+Milestone Name | Amount | Due Date | Billing Code Name
+The dates have to be within the contract start/end dates.
+The date format is MMDDYYYY.  
+Active and Billed can be 'True' or 'False'.
+Billing Code Name must match an existing billing code name."

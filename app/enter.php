@@ -40,7 +40,7 @@
 <h1>This is a test</h1>
 <form action="process.php" method="post" enctype="multipart/form-data">
     <fieldset>
-        <legend>Select file to upload:</legend>
+        <legend>Select the CSV file to upload:</legend>
         <input type="file" name="fileToUpload" id="fileToUpload" required>
         <input type="submit" value="Upload File" name="submit">
     </fieldset>

@@ -6,6 +6,7 @@
  * Time: 2:13 PM
  */
 session_start();
+echo phpinfo();
 ?>
 <!doctype html>
 <html lang="en">

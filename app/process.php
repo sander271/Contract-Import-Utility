@@ -5,6 +5,8 @@
  * Date: 6/2/2015
  * Time: 2:47 PM
  */
+require_once "../vendor/opendns/autotask-php/src/autoload.php";
+include "fileparser.php";
 session_start();
 function uploadFile(){
     global $success;
@@ -39,7 +41,21 @@ function uploadFile(){
     }
 }
 function processFile(){
-    include "fileparser.php";
+    $username = $_SESSION['username'];
+    $password = $_SESSION['password'];
+    $authWsdl = 'https://webservices.autotask.net/atservices/1.5/atws.wsdl';
+    $opts = array('trace' => 1);
+    $client = new ATWS\Client($authWsdl, $opts);
+    $zoneInfo = $client->getZoneInfo($username);
+    print_r($zoneInfo);
+
+    $authOpts = array(
+        'login' => $username,
+        'password' => $password,
+        'trace' => 1,   // Allows us to debug by getting the XML requests sent
+    );
+    $wsdl = str_replace('.asmx', '.wsdl', $zoneInfo->getZoneInfoResult->URL);
+    print_r($client = new ATWS\Client($wsdl, $authOpts));
     $parser = new FileParser($_SESSION['filename']);
 }
 ?>

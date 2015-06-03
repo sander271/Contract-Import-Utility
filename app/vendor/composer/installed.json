@@ -1,0 +1,52 @@
+[
+    {
+        "name": "opendns/autotask-php",
+        "version": "v0.1.4",
+        "version_normalized": "0.1.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/opendns/autotask-php.git",
+            "reference": "3b1e23d2ff3c8cd9d330972f4583dcb0bf71051f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/opendns/autotask-php/zipball/3b1e23d2ff3c8cd9d330972f4583dcb0bf71051f",
+            "reference": "3b1e23d2ff3c8cd9d330972f4583dcb0bf71051f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2014-11-07 23:08:52",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "ATWS\\": "src/",
+                "ATWS\\AutotaskObjects\\": "src/AutotaskObjects"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Eric Reynolds",
+                "email": "ereynolds@opendns.com"
+            },
+            {
+                "name": "Miles Evenson",
+                "email": "miles@opendns.com"
+            }
+        ],
+        "description": "A SOAP client wrapper for talking to Autotask's Web Service",
+        "homepage": "http://github.com/opendns/autotask-php",
+        "keywords": [
+            "autotask",
+            "msp",
+            "psa",
+            "soap"
+        ]
+    }
+]

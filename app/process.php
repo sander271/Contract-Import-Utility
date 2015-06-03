@@ -5,7 +5,7 @@
  * Date: 6/2/2015
  * Time: 2:47 PM
  */
-require_once "../vendor/opendns/autotask-php/src/autoload.php";
+require_once "vendor/opendns/autotask-php/src/autoload.php";
 //$class = "SoapClient";
 //$namespaceParts = explode('\\', $class);
 //$className = array_pop($namespaceParts);

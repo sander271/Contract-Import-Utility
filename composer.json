@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "opendns/autotask-php": "v0.1.4",
-    "ext-soap": "*"
+    "ext-soap": "*",
+    "opendns/autotask-php": "v0.1.4"
   }
 }

@@ -5,11 +5,7 @@
  * Date: 6/2/2015
  * Time: 2:47 PM
  */
-require_once "vendor/opendns/autotask-php/src/autoload.php";
-//$class = "SoapClient";
-//$namespaceParts = explode('\\', $class);
-//$className = array_pop($namespaceParts);
-//echo __DIR__ . '/' . implode('/', $namespaceParts) . "/{$className}.php";
+require_once "../vendor/autoload.php";
 include "fileparser.php";
 session_start();
 function uploadFile(){

@@ -5,7 +5,9 @@
  * Date: 6/2/2015
  * Time: 2:43 PM
  */
+//Starts a session with the user of the browser. The session ends when he user closes their browser.
 session_start();
+//Gets the POST data from the Autotask login form and saves them in session variables.
 foreach ($_REQUEST as $key => $value){
     $_SESSION[$key] = $value;
 }

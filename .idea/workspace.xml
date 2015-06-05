@@ -29,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.153847" vertical-offset="73" max-vertical-offset="952">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.48806682" vertical-offset="33" max-vertical-offset="952">
+              <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -51,16 +51,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="process.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="process.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/process.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8981818" vertical-offset="6858" max-vertical-offset="8942">
-              <caret line="478" column="17" selection-start-line="478" selection-start-column="17" selection-end-line="478" selection-end-column="17" />
+            <state vertical-scroll-proportion="-19.307692" vertical-offset="5686" max-vertical-offset="8602">
+              <caret line="395" column="48" selection-start-line="395" selection-start-column="48" selection-end-line="395" selection-end-column="48" />
               <folding>
                 <element signature="e#6#90#0#PHP" expanded="true" />
                 <element signature="n#uploadFile#0;n#!!top" expanded="false" />
-                <marker date="1433519473000" expanded="true" signature="24273:24292" placeholder="..." />
-                <marker date="1433519473000" expanded="true" signature="24445:24493" placeholder="{...}" />
+                <marker date="1433531483612" expanded="true" signature="10180:10269" placeholder="..." />
+                <marker date="1433531483612" expanded="true" signature="10644:10823" placeholder="..." />
+                <marker date="1433531483612" expanded="true" signature="24152:24171" placeholder="..." />
+                <marker date="1433531483612" expanded="true" signature="24324:24372" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -336,8 +338,10 @@
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
             <element signature="n#uploadFile#0;n#!!top" expanded="false" />
-            <marker date="1433519473000" expanded="true" signature="24273:24292" placeholder="..." />
-            <marker date="1433519473000" expanded="true" signature="24445:24493" placeholder="{...}" />
+            <marker date="1433531483612" expanded="true" signature="10180:10269" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="10644:10823" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="24152:24171" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="24324:24372" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -367,8 +371,10 @@
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
             <element signature="n#uploadFile#0;n#!!top" expanded="false" />
-            <marker date="1433519473000" expanded="true" signature="24273:24292" placeholder="..." />
-            <marker date="1433519473000" expanded="true" signature="24445:24493" placeholder="{...}" />
+            <marker date="1433531483612" expanded="true" signature="10180:10269" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="10644:10823" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="24152:24171" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="24324:24372" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -398,8 +404,10 @@
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
             <element signature="n#uploadFile#0;n#!!top" expanded="false" />
-            <marker date="1433519473000" expanded="true" signature="24273:24292" placeholder="..." />
-            <marker date="1433519473000" expanded="true" signature="24445:24493" placeholder="{...}" />
+            <marker date="1433531483612" expanded="true" signature="10180:10269" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="10644:10823" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="24152:24171" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="24324:24372" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -506,24 +514,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.153847" vertical-offset="73" max-vertical-offset="952">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/process.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8981818" vertical-offset="6858" max-vertical-offset="8942">
-          <caret line="478" column="17" selection-start-line="478" selection-start-column="17" selection-end-line="478" selection-end-column="17" />
+        <state vertical-scroll-proportion="-19.307692" vertical-offset="5686" max-vertical-offset="8602">
+          <caret line="395" column="48" selection-start-line="395" selection-start-column="48" selection-end-line="395" selection-end-column="48" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
             <element signature="n#uploadFile#0;n#!!top" expanded="false" />
-            <marker date="1433519473000" expanded="true" signature="24273:24292" placeholder="..." />
-            <marker date="1433519473000" expanded="true" signature="24445:24493" placeholder="{...}" />
+            <marker date="1433531483612" expanded="true" signature="10180:10269" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="10644:10823" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="24152:24171" placeholder="..." />
+            <marker date="1433531483612" expanded="true" signature="24324:24372" placeholder="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48806682" vertical-offset="33" max-vertical-offset="952">
+          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

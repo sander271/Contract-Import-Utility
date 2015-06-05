@@ -47,7 +47,7 @@ function uploadFile(){
 //This is the fuction that parses the file and creates the contracts in the user's Autotask database.
 function processFile()
 {
-    //creates a connection to the Autotask database associated with the user.
+    //creates a connection to the Autotask database associated with the username and password provided by the user.
     $username = $_SESSION['username'];
     $password = $_SESSION['password'];
     $authWsdl = 'https://webservices.autotask.net/atservices/1.5/atws.wsdl';
@@ -63,8 +63,9 @@ function processFile()
     );
     $wsdl = str_replace('.asmx', '.wsdl', $zoneInfo->getZoneInfoResult->URL);
     $client = new ATWS\Client($wsdl, $authOpts);
-    //The following line break up the input file into separate lines and further breaks the lines up
-    //into individual tokens.
+    //The following line break up the input file into separate lines and further breaks those lines up
+    //into individual tokens. The lines a predetermined by the rows of the import template file. If there are any changes there
+    //there must be corresponding changes here.
     $lines = file("CSV/" . $_SESSION['filename']);
     $accountNames = explode(',', $lines[1]);
     $contactNames = explode(',', $lines[2]);
@@ -90,64 +91,61 @@ function processFile()
     $ticketPurchases = explode(',', $lines[22]);
     $milestones = explode(',', $lines[23]);
 
-//add loop to create multiple contracts here
     $index = 4;
+    $actualAddress = 5;
+    //This is the loop that goes through each column and parses that data in that column. It then creates the contract and
+    // other related contract content that was supplied in the input file.
     while($index < count($contactNames) && !empty($contractNames[$index])){
-
-//    }
-//    for($index = 4; $index < count($contractNames); $index++){
         $contract = new ATWS\AutotaskObjects\Contract();
-
         $query = new ATWS\AutotaskObjects\Query('Account');
         $queryField = new ATWS\AutotaskObjects\QueryField('AccountName');
         $queryField->addExpression('Equals', $accountNames[$index]);
         $query->addField($queryField);
         $account = $client->query($query);
         $accountID = $account->queryResult->EntityResults->Entity->id;
-
         $contract->AccountID = $accountID;
         $allowedPeriodType = true;
-        switch ($contractTypes[$index]) {
-            case "Time and Materials":
+        switch (strtolower($contractTypes[$index])) {
+            case "time and materials":
                 $contract->ContractType = 1;
                 $allowedPeriodType = false;
                 break;
-            case "Recurring":
+            case "recurring":
                 $contract->ContractType = 7;
                 $allowedPeriodType = true;
                 break;
-            case "Incident":
+            case "incident":
                 $contract->ContractType = 8;
                 break;
-            case "Block Hour":
+            case "block hour":
                 $contract->ContractType = 4;
                 $allowedPeriodType = false;
                 break;
-            case "Retainer":
+            case "retainer":
                 $contract->ContractType = 6;
                 break;
-            case "Fixed Price":
+            case "fixed price":
                 $contract->ContractType = 3;
                 break;
             default:
-                echo "<h2>Error: Your Contract Type is not one of the accepted values.</h2>";
+                echo "<h2>Error: Your Contract Type in column {$actualAddress} is not one of the accepted values.</h2>";
                 exit(1);
                 break;
         }
         $contract->ContactName = $contactNames[$index];
-        switch ($billingPreferences[$index]) {
-            case "Immediately":
+        switch (strtolower($billingPreferences[$index])) {
+            case "immediately":
                 $contract->BillingPreference = 1;
                 break;
-            case "Reconcile":
+            case "reconcile":
                 $contract->BillingPreference = 2;
                 break;
-            case "Timesheet":
+            case "timesheet":
                 $contract->BillingPreference = 3;
                 break;
             default:
                 if($contract->ContractType == 1 || $contract->ContractType == 4 || $contract->ContractType == 6 || $contract->ContractType == 8){
-                    echo "<h2>Error: Your Billing Preference is not one of the accepted values.</h2>";
+                    echo "<h2>Error: Your Billing Preference is not one of the accepted values in column {$actualAddress}.</h2>";
                     exit(1);
                 }
                 else
@@ -156,17 +154,17 @@ function processFile()
         $contract->ContractName = $contractNames[$index];
         $contract->ContractNumber = $contractNumbers[$index];
         if ($allowedPeriodType) {
-            switch ($contractPeriodTypes[$index]) {
-                case "Monthly":
+            switch (strtolower($contractPeriodTypes[$index])) {
+                case "monthly":
                     $contract->ContractPeriodType = "m";
                     break;
-                case "Quarterly":
+                case "quarterly":
                     $contract->ContractPeriodType = "q";
                     break;
-                case "Semi-Annually":
+                case "semi-annually":
                     $contract->ContractPeriodType = "s";
                     break;
-                case "Yearly":
+                case "yearly":
                     $contract->ContractPeriodType = "y";
                     break;
                 default:
@@ -180,11 +178,11 @@ function processFile()
         $contract->Description = $descriptions[$index];
         $endDate = new DateTime($endDates[$index], new DateTimeZone('America/New_York'));
         $contract->EndDate = $endDate->format(DateTime::W3C);
-        switch ($isDefaultContracts[$index]) {
-            case "Yes":
+        switch (strtolower($isDefaultContracts[$index])) {
+            case "yes":
                 $contract->IsDefaultContract = true;
                 break;
-            case "No":
+            case "no":
                 $contract->IsDefaultContract = false;
                 break;
             default:
@@ -221,7 +219,6 @@ function processFile()
                 unset($contract->EstimatedRevenue);
             }
         }
-        //this loop removes empty values before the create function
         removeEmpty($contract);
         $contract->id = 0;
 
@@ -236,12 +233,25 @@ function processFile()
             $newContract = $client->create($contract);
             if($newContract->createResult->ReturnCode != 1){
                 print_r($newContract->createResult->Errors);
+                switch($newContract->createResult->Errors->ATWSError->Message){
+                    case "Value does not exist for the required field AccountID. ; on record number [1].":
+                        echo "<h2>Error: The Customer Name field is not correct. Check column number {$actualAddress}.</h2>";
+                        break;
+                    case "Contract EndDate must be after StartDate.":
+                        echo "<h2>Error: Contract EndDate must be after StartDate in column {$actualAddress}.</h2>";
+                        break;
+                    case "Conversion from type 'Object' to type 'String' is not valid.":
+                        echo "<h2>Error: An error has occurred in column {$actualAddress}, check to make sure that all required
+fields have been completed and the type of information in each field is correct.</h2>";
+                        break;
+                }
             }
             else{
                 echo "<h2>{$newContract->createResult->EntityResults->Entity->ContractName} was created successfully.</h2>";
             }
             $createdContract = $newContract->createResult->EntityResults->Entity;
-            if($createdContract->ContractType == 1 || $createdContract->ContractType == 6 || $createdContract->ContractType == 3){
+            if(($createdContract->ContractType == 1 || $createdContract->ContractType == 6 || $createdContract->ContractType == 3)
+                && !empty($roleRates[$index])){
                 $contractRates = explode(';', $roleRates[$index]);
                 foreach ($contractRates as $rate) {
                     $contractRate = new ATWS\AutotaskObjects\ContractRate();
@@ -318,17 +328,7 @@ function processFile()
                     $blockHourPurchase->HourlyRate = $info[3];
                     $blockHourPurchase->Hours = $info[2];
                     $blockHourPurchase->id = 0;
-                    switch(strtolower($info[5])){
-                        case "true":
-                            $blockHourPurchase->IsPaid = 1;
-                            break;
-                        case "false":
-                            $blockHourPurchase->IsPaid = 0;
-                            break;
-                        default:
-                            echo "<h2>Error: A Block Hour Purchase billed field can only be true or false.</h2>";
-                            exit(1);
-                    }
+                    $blockHourPurchase->IsPaid = 0;
                     $startDate = new DateTime($info[0], new DateTimeZone('America/New_York'));
                     $blockHourPurchase->StartDate = $startDate->format(DateTime::W3C);
                     switch(strtolower($info[4])){
@@ -360,17 +360,7 @@ function processFile()
                     $endDate = new DateTime($info[1], new DateTimeZone('America/New_York'));
                     $retainerPurchase->EndDate = $endDate->format(DateTime::W3C);
                     $retainerPurchase->id = 0;
-                    switch(strtolower($info[4])){
-                        case "true":
-                            $retainerPurchase->IsPaid = 1;
-                            break;
-                        case "false":
-                            $retainerPurchase->IsPaid = 0;
-                            break;
-                        default:
-                            echo "<h2>Error: A Retainer Purchase billed field can only be true or false.</h2>";
-                            exit(1);
-                    }
+                    $retainerPurchase->IsPaid = 0;
                     $startDate = new DateTime($info[0], new DateTimeZone('America/New_York'));
                     $retainerPurchase->StartDate = $startDate->format(DateTime::W3C);
                     switch(strtolower($info[3])){
@@ -403,17 +393,7 @@ function processFile()
                     $endDate = new DateTime($info[1], new DateTimeZone('America/New_York'));
                     $contractTicket->EndDate = $endDate->format(DateTime::W3C);
                     $contractTicket->id = 0;
-                    switch(strtolower($info[5])){
-                        case "true":
-                            $contractTicket->IsPaid = 1;
-                            break;
-                        case "false":
-                            $contractTicket->IsPaid = 0;
-                            break;
-                        default:
-                            echo "<h2>Error: A Ticket Purchase billed field can only be true or false.</h2>";
-                            exit(1);
-                    }
+                    $contractTicket->IsPaid = 0;
                     $startDate = new DateTime($info[0], new DateTimeZone('America/New_York'));
                     $contractTicket->StartDate = $startDate->format(DateTime::W3C);
                     switch(strtolower($info[4])){
@@ -477,11 +457,11 @@ function processFile()
             }
         }
         $index++;
+        $actualAddress++;
     }
 }
 function removeEmpty($item){
     foreach($item as $var => $value) {
-//            echo $var . "<br/>";
         if($var == "UserDefinedFields") {
             foreach($item->UserDefinedFields as $var1 => $value1) {
                 if(empty($value1)){

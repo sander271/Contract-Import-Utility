@@ -7,43 +7,9 @@
  */
 //Gets access to the Autotask API classes.
 require_once "../vendor/autoload.php";
-include "fileparser.php";
 error_reporting(0);
-//session_start();
-//This fuction uploads the file picked in the last form. It checks to make sure it is of the format .csv
-//and if it is not the upload is cancelled.
-function uploadFile(){
-    global $success;
-    $target_dir = "CSV/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
-    $success = false;
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 5000000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
-    // Allow certain file formats
-    if($fileType != "csv") {
-        echo "Sorry, only csv files are allowed." . "<br/>";
-        $uploadOk = 0;
-    }
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-            $_SESSION['filename'] = $_FILES["fileToUpload"]["name"];
-            $success = true;
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-            $success = false;
-        }
-    }
-}
+session_start();
+
 //This is the fuction that parses the file and creates the contracts in the user's Autotask database.
 function processFile()
 {
@@ -205,9 +171,24 @@ function processFile()
         }
         $contract->TimeReportingRequiresStartAndStopTimes = $number;
         $contract->Status = 1;
-        $contract->EstimatedHours = $estimatedHours[$index];
-        $contract->EstimatedCost = $estimatedCosts[$index];
-        $contract->EstimatedRevenue = $estimatedRevenue[$index];
+        if(empty($estimatedHours[$index])){
+            $contract->EstimatedHours = 0;
+        }
+        else{
+            $contract->EstimatedHours = $estimatedHours[$index];
+        }
+        if(empty($estimatedCosts[$index])){
+            $contract->EstimatedCost = 0;
+        }
+        else{
+            $contract->EstimatedCost = $estimatedCosts[$index];
+        }
+        if(empty($estimatedRevenue[$index])){
+            $contract->EstimatedRevenue = 0;
+        }
+        else{
+            $contract->EstimatedRevenue = $estimatedRevenue[$index];
+        }
         if($contract->ContractType == 7){
             if(empty($contract->EstimatedHours)){
                 unset($contract->EstimatedHours);
@@ -233,6 +214,7 @@ function processFile()
             $newContract = $client->create($contract);
             if($newContract->createResult->ReturnCode != 1){
                 print_r($newContract->createResult->Errors);
+                print_r($newContract->createResult->Errors->ATWSError->Message);
                 switch($newContract->createResult->Errors->ATWSError->Message){
                     case "Value does not exist for the required field AccountID. ; on record number [1].":
                         echo "<h2>Error: The Customer Name field is not correct. Check column number {$actualAddress}.</h2>";
@@ -248,6 +230,8 @@ fields have been completed and the type of information in each field is correct.
             }
             else{
                 echo "<h2>{$newContract->createResult->EntityResults->Entity->ContractName} was created successfully.</h2>";
+                ob_flush();
+                flush();
             }
             $createdContract = $newContract->createResult->EntityResults->Entity;
             if(($createdContract->ContractType == 1 || $createdContract->ContractType == 6 || $createdContract->ContractType == 3)
@@ -268,6 +252,18 @@ fields have been completed and the type of information in each field is correct.
                     $creation = $client->create($contractRate);
                     if($creation->createResult->ReturnCode != 1){
                         print_r($creation->createResult->Errors);
+                        switch($creation->createResult->Errors->ATWSError->Message){
+                            case "Value does not exist for the required field RoleID. ; on record number [1].":
+                                echo "<h2>Error: The Role Name in column {$actualAddress} is not an existing Role Name.
+To fix this error you must first delete the {$contract->ContractName} contract from Autotask that you were trying to add this to,
+ and then reload the import file with a correct Role Name.</h2>";
+                                break;
+                            case "Can not convert data to numeric in field: ContractHourlyRate. ; on record number [1].":
+                                echo "<h2>Error: The Contract Hourly Billing Rate in column {$actualAddress} is incorrect.
+Make sure it is a numeric value. To fix this you must first delete the {$contract->ContractName} contract from Autotask,
+then reload the import file with a correct Contract Hourly Billing Rate.</h2>";
+                                break;
+                        }
                     }
                 }
             }
@@ -495,9 +491,10 @@ function removeEmpty($item){
 
         body {
             margin:0;
-            font-family:'Lato', sans-serif;
+            font-family: 'Lato', sans-serif;
             text-align:center;
-            color: #999;
+            color: #ffffff;
+            background-color: #00457c;
         }
 
         a, a:visited {
@@ -512,21 +509,18 @@ function removeEmpty($item){
         fieldset {
             border: 0;
         }
+        img{
+            width: 100%;
+        }
+        form{
+            padding-top: 3em;
+        }
     </style>
 </head>
 <body>
-    <h1>This is where the file will be parsed.</h1>
-    <?php uploadFile() ?>
-    <br/>
+    <br onload="runBar()"/>
     <?php
-    global $success;
-    if(!$success){
-        echo "<input type=\"button\" value=\"back\" onclick=\"location.replace('enter.php')\">";
-    }
-    else{
-        processFile();
-    }
+    processFile();
     ?>
-
 </body>
 </html>

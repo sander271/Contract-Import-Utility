@@ -17,9 +17,10 @@ session_start();
 
         body {
             margin:0;
-            font-family:'Lato', sans-serif;
+            font-family: 'Lato', sans-serif;
             text-align:center;
-            color: #999;
+            color: #ffffff;
+            background-color: #00457c;
         }
 
         a, a:visited {
@@ -34,10 +35,16 @@ session_start();
         fieldset {
             border: 0;
         }
+        img{
+            width: 60%;
+        }
+        form{
+            padding-top: 3em;
+        }
     </style>
 </head>
 <body>
-    <h1>This is a test</h1>
+    <img src="Autotask%20Logo.jpg"/>
     <form action="enter.php" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend>Enter your Autotask username and password:</legend>

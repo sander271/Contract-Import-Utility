@@ -22,9 +22,10 @@ foreach ($_REQUEST as $key => $value){
 
         body {
             margin:0;
-            font-family:'Lato', sans-serif;
+            font-family: 'Lato', sans-serif;
             text-align:center;
-            color: #999;
+            color: #ffffff;
+            background-color: #00457c;
         }
 
         a, a:visited {
@@ -39,11 +40,17 @@ foreach ($_REQUEST as $key => $value){
         fieldset {
             border: 0;
         }
+        img{
+            width: 60%;
+        }
+        form{
+            padding-top: 3em;
+        }
     </style>
 </head>
 <body>
-<h1>This is a test</h1>
-<form action="process.php" method="post" enctype="multipart/form-data">
+<img src="Autotask%20Logo.jpg"/>
+<form action="ajax.php" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend>Select the CSV file to upload:</legend>
         <input type="file" name="fileToUpload" id="fileToUpload" required>

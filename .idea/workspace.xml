@@ -39,10 +39,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enter.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="enter.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/enter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-30.73077" vertical-offset="0" max-vertical-offset="1122">
+            <state vertical-scroll-proportion="0.95346063" vertical-offset="0" max-vertical-offset="1122">
               <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
               <folding>
                 <element signature="e#6#90#0#PHP" expanded="true" />
@@ -51,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ajax.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ajax.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/ajax.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31026253" vertical-offset="1015" max-vertical-offset="1853">
-              <caret line="75" column="68" selection-start-line="75" selection-start-column="68" selection-end-line="75" selection-end-column="68" />
+            <state vertical-scroll-proportion="-4.1153846" vertical-offset="1015" max-vertical-offset="1853">
+              <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -815,21 +815,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/ajax.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.1153846" vertical-offset="1015" max-vertical-offset="1853">
+          <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/enter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-30.73077" vertical-offset="0" max-vertical-offset="1122">
+        <state vertical-scroll-proportion="0.95346063" vertical-offset="0" max-vertical-offset="1122">
           <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/ajax.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31026253" vertical-offset="1015" max-vertical-offset="1853">
-          <caret line="75" column="68" selection-start-line="75" selection-start-column="68" selection-end-line="75" selection-end-column="68" />
-          <folding />
         </state>
       </provider>
     </entry>

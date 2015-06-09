@@ -32,8 +32,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.884615" vertical-offset="233" max-vertical-offset="1071">
-              <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+            <state vertical-scroll-proportion="-22.23077" vertical-offset="0" max-vertical-offset="1071">
+              <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -42,7 +42,7 @@
       <file leaf-file-name="enter.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/enter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.461538" vertical-offset="267" max-vertical-offset="1122">
+            <state vertical-scroll-proportion="-30.73077" vertical-offset="0" max-vertical-offset="1122">
               <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
               <folding>
                 <element signature="e#6#90#0#PHP" expanded="true" />
@@ -51,65 +51,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ajax.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ajax.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/ajax.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.346153" vertical-offset="1287" max-vertical-offset="2176">
-              <caret line="116" column="23" selection-start-line="116" selection-start-column="6" selection-end-line="116" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.31026253" vertical-offset="1015" max-vertical-offset="1853">
+              <caret line="75" column="68" selection-start-line="75" selection-start-column="68" selection-end-line="75" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="process.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="process.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/process.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75272727" vertical-offset="263" max-vertical-offset="1088">
-              <caret line="519" column="6" selection-start-line="519" selection-start-column="6" selection-end-line="519" selection-end-column="6" />
+            <state vertical-scroll-proportion="-16.692308" vertical-offset="7896" max-vertical-offset="8738">
+              <caret line="513" column="9" selection-start-line="513" selection-start-column="9" selection-end-line="513" selection-end-column="9" />
               <folding>
                 <element signature="e#6#90#0#PHP" expanded="true" />
-                <element signature="n#processFile#0;n#!!top" expanded="false" />
                 <element signature="n#removeEmpty#0;n#!!top" expanded="false" />
-                <marker date="1433797041836" expanded="true" signature="9309:9398" placeholder="..." />
-                <marker date="1433797041836" expanded="true" signature="9773:9952" placeholder="..." />
-                <marker date="1433797041836" expanded="true" signature="11764:12035" placeholder="..." />
-                <marker date="1433797041836" expanded="true" signature="12241:12520" placeholder="..." />
-                <marker date="1433797041836" expanded="true" signature="24397:24416" placeholder="..." />
-                <marker date="1433797041836" expanded="true" signature="24569:24617" placeholder="{...}" />
+                <marker date="1433867523827" expanded="true" signature="9309:9398" placeholder="..." />
+                <marker date="1433867523827" expanded="true" signature="9773:9952" placeholder="..." />
+                <marker date="1433867523827" expanded="true" signature="11764:12035" placeholder="..." />
+                <marker date="1433867523827" expanded="true" signature="12241:12520" placeholder="..." />
+                <marker date="1433867523827" expanded="true" signature="24397:24416" placeholder="..." />
+                <marker date="1433867523827" expanded="true" signature="24569:24617" placeholder="{...}" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/test.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="357">
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.htaccess">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-              <caret line="0" column="24" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Import File Template.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/CSV/Import File Template.csv">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="527">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -136,8 +102,8 @@
         <option value="$PROJECT_DIR$/app/test.php" />
         <option value="$PROJECT_DIR$/ajax.php" />
         <option value="$PROJECT_DIR$/app/enter.php" />
-        <option value="$PROJECT_DIR$/app/ajax.php" />
         <option value="$PROJECT_DIR$/app/process.php" />
+        <option value="$PROJECT_DIR$/app/ajax.php" />
       </list>
     </option>
   </component>
@@ -364,6 +330,87 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/CSV/Import File Template.csv">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="527">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="233" max-vertical-offset="1071">
+          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/enter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="1122">
+          <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+          <folding>
+            <element signature="e#6#90#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ajax.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1287" max-vertical-offset="2176">
+          <caret line="116" column="23" selection-start-line="116" selection-start-column="6" selection-end-line="116" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/process.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#90#0#PHP" expanded="true" />
+            <element signature="n#removeEmpty#0;n#!!top" expanded="false" />
+            <marker date="1433867523827" expanded="true" signature="9309:9398" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="9773:9952" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="11764:12035" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="12241:12520" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24397:24416" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24569:24617" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="357">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="24" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/CSV/Import File Template.csv">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="527">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="646" max-vertical-offset="1071">
@@ -388,14 +435,13 @@
           <caret line="602" column="7" selection-start-line="602" selection-start-column="7" selection-end-line="602" selection-end-column="7" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
-            <element signature="n#processFile#0;n#!!top" expanded="false" />
             <element signature="n#removeEmpty#0;n#!!top" expanded="false" />
-            <marker date="1433797041836" expanded="true" signature="9309:9398" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="9773:9952" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="11764:12035" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="12241:12520" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24397:24416" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24569:24617" placeholder="{...}" />
+            <marker date="1433867523827" expanded="true" signature="9309:9398" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="9773:9952" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="11764:12035" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="12241:12520" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24397:24416" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24569:24617" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -425,14 +471,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/CSV/Import File Template.csv">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="527">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index.php">
@@ -459,27 +505,26 @@
           <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
-            <element signature="n#processFile#0;n#!!top" expanded="false" />
             <element signature="n#removeEmpty#0;n#!!top" expanded="false" />
-            <marker date="1433797041836" expanded="true" signature="9309:9398" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="9773:9952" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="11764:12035" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="12241:12520" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24397:24416" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24569:24617" placeholder="{...}" />
+            <marker date="1433867523827" expanded="true" signature="9309:9398" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="9773:9952" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="11764:12035" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="12241:12520" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24397:24416" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24569:24617" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/CSV/Import File Template.csv">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="527">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index.php">
@@ -506,27 +551,26 @@
           <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
-            <element signature="n#processFile#0;n#!!top" expanded="false" />
             <element signature="n#removeEmpty#0;n#!!top" expanded="false" />
-            <marker date="1433797041836" expanded="true" signature="9309:9398" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="9773:9952" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="11764:12035" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="12241:12520" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24397:24416" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24569:24617" placeholder="{...}" />
+            <marker date="1433867523827" expanded="true" signature="9309:9398" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="9773:9952" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="11764:12035" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="12241:12520" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24397:24416" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24569:24617" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/CSV/Import File Template.csv">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="527">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index.php">
@@ -553,14 +597,13 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
-            <element signature="n#processFile#0;n#!!top" expanded="false" />
             <element signature="n#removeEmpty#0;n#!!top" expanded="false" />
-            <marker date="1433797041836" expanded="true" signature="9309:9398" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="9773:9952" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="11764:12035" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="12241:12520" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24397:24416" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24569:24617" placeholder="{...}" />
+            <marker date="1433867523827" expanded="true" signature="9309:9398" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="9773:9952" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="11764:12035" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="12241:12520" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24397:24416" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24569:24617" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -589,14 +632,13 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
-            <element signature="n#processFile#0;n#!!top" expanded="false" />
             <element signature="n#removeEmpty#0;n#!!top" expanded="false" />
-            <marker date="1433797041836" expanded="true" signature="9309:9398" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="9773:9952" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="11764:12035" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="12241:12520" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24397:24416" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24569:24617" placeholder="{...}" />
+            <marker date="1433867523827" expanded="true" signature="9309:9398" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="9773:9952" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="11764:12035" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="12241:12520" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24397:24416" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24569:24617" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -625,14 +667,13 @@
           <caret line="42" column="48" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
-            <element signature="n#processFile#0;n#!!top" expanded="false" />
             <element signature="n#removeEmpty#0;n#!!top" expanded="false" />
-            <marker date="1433797041836" expanded="true" signature="9309:9398" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="9773:9952" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="11764:12035" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="12241:12520" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24397:24416" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24569:24617" placeholder="{...}" />
+            <marker date="1433867523827" expanded="true" signature="9309:9398" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="9773:9952" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="11764:12035" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="12241:12520" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24397:24416" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24569:24617" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -701,13 +742,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/CSV/Copy of Contract Import Utility - Data Description1.csv">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.56666666" vertical-offset="0" max-vertical-offset="1122">
           <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
         </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Autotask Logo.jpg">
@@ -716,14 +757,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/CSV/Import File Template.csv">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="527">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.user.ini">
@@ -743,15 +784,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/test.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="357">
+        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="357">
           <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/process.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.692308" vertical-offset="7896" max-vertical-offset="8738">
+          <caret line="513" column="9" selection-start-line="513" selection-start-column="9" selection-end-line="513" selection-end-column="9" />
+          <folding>
+            <element signature="e#6#90#0#PHP" expanded="true" />
+            <element signature="n#removeEmpty#0;n#!!top" expanded="false" />
+            <marker date="1433867523827" expanded="true" signature="9309:9398" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="9773:9952" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="11764:12035" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="12241:12520" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24397:24416" placeholder="..." />
+            <marker date="1433867523827" expanded="true" signature="24569:24617" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.23077" vertical-offset="0" max-vertical-offset="1071">
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/enter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.461538" vertical-offset="267" max-vertical-offset="1122">
+        <state vertical-scroll-proportion="-30.73077" vertical-offset="0" max-vertical-offset="1122">
           <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
@@ -759,37 +825,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.884615" vertical-offset="233" max-vertical-offset="1071">
-          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/ajax.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.346153" vertical-offset="1287" max-vertical-offset="2176">
-          <caret line="116" column="23" selection-start-line="116" selection-start-column="6" selection-end-line="116" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.31026253" vertical-offset="1015" max-vertical-offset="1853">
+          <caret line="75" column="68" selection-start-line="75" selection-start-column="68" selection-end-line="75" selection-end-column="68" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/process.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75272727" vertical-offset="263" max-vertical-offset="1088">
-          <caret line="519" column="6" selection-start-line="519" selection-start-column="6" selection-end-line="519" selection-end-column="6" />
-          <folding>
-            <element signature="e#6#90#0#PHP" expanded="true" />
-            <element signature="n#processFile#0;n#!!top" expanded="false" />
-            <element signature="n#removeEmpty#0;n#!!top" expanded="false" />
-            <marker date="1433797041836" expanded="true" signature="9309:9398" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="9773:9952" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="11764:12035" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="12241:12520" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24397:24416" placeholder="..." />
-            <marker date="1433797041836" expanded="true" signature="24569:24617" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>

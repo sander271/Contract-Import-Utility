@@ -516,9 +516,15 @@ function removeEmpty($item){
             padding-top: 3em;
         }
     </style>
+    <script>
+        function killBar(){
+            alert("killBar has been called");
+            $("#progressbar").remove();
+        }
+    </script>
 </head>
 <body>
-    <br onload="runBar()"/>
+    <br id="boom"/>
     <?php
     processFile();
     ?>

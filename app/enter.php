@@ -16,6 +16,7 @@ foreach ($_REQUEST as $key => $value){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="logos-icons.png"/>
     <title>Autotask Contract Import Utility</title>
     <style>
         @import url(//fonts.googleapis.com/css?family=Lato:700);

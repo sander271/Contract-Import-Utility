@@ -11,6 +11,8 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="logos-icons.png"/>
+    <link rel="stylesheet" type="text/css" href="css/checkmark.css"/>
     <title>Autotask Contract Import Utility</title>
     <style>
         @import url(//fonts.googleapis.com/css?family=Lato:700);
@@ -44,7 +46,10 @@ session_start();
     </style>
 </head>
 <body>
-    <img src="Autotask%20Logo.jpg"/>
+    <div class="wrapper">
+        <img src="Autotask%20Logo.jpg"/>
+        <div class="check">&#x2713;</div>
+    </div>
     <form action="enter.php" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend>Enter your Autotask username and password:</legend>

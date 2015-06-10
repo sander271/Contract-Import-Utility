@@ -1,0 +1,49 @@
+
+.wrapper {
+    /*width: 240px;*/
+    /*display: inline-block;*/
+    position: relative;
+}
+
+.check {
+    /*width: 0;*/
+    width: 20%;
+    overflow: hidden;
+    display: inline-block;
+    /*opacity: 0;*/
+    animation: show 1.5s;
+    -webkit-animation: show 1.5s;
+    font-size: 240px;
+    font-style: italic;
+    position: absolute;
+    color: red;
+    text-align: left;
+    left: 1em;
+    top: -.4em;
+    -webkit-transform: rotate(17deg);
+}
+
+@keyframes show {
+    0% {
+        overflow: hidden;
+        width: 0;
+        opacity: 0;
+    }
+    100% {
+        width: 240px;
+        opacity: 100;
+        overflow: inherit;
+    }
+}
+@-webkit-keyframes show {
+    0% {
+        overflow: hidden;
+        width: 0;
+        opacity: 0;
+    }
+    100% {
+        width: 240px;
+        opacity: 100;
+        overflow: inherit;
+    }
+}

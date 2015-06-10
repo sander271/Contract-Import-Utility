@@ -40,6 +40,7 @@ uploadFile();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="logos-icons.png"/>
     <title>Autotask Contract Import Utility</title>
     <style>
         @import url(//fonts.googleapis.com/css?family=Lato:700);
@@ -85,6 +86,8 @@ uploadFile();
     </script>
 </head>
 <body onload="runBar()">
+    <br/>
+    <h2>Depending on how many contracts you are importing this may take a while, please wait.</h2>
     <br/>
     <div id="progressbar"></div>
     <div id="myDiv">

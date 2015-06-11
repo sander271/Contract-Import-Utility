@@ -8,6 +8,8 @@
 //Gets access to the Autotask API classes.
 require_once "../vendor/autoload.php";
 error_reporting(0);
+set_time_limit(0);
+ignore_user_abort(true);
 session_start();
 
 //This is the fuction that parses the file and creates the contracts in the user's Autotask database.
@@ -74,8 +76,18 @@ function processFile()
         $contract = new ATWS\AutotaskObjects\Contract();
         $query = new ATWS\AutotaskObjects\Query('Account');
         $queryField = new ATWS\AutotaskObjects\QueryField('AccountName');
-        $queryField->addExpression('Equals', $accountNames[$index]);
-        $query->addField($queryField);
+        $queryField2 = new ATWS\AutotaskObjects\QueryField('AccountName');
+        if(stristr($accountNames[$index], "&") != false){
+            $accountName = explode(' ', trim($accountNames[$index]));
+            $queryField->addExpression('BeginsWith', $accountName[0]);
+            $query->addField($queryField);
+            $queryField2->addExpression('EndsWith', $accountName[count($accountName)-1]);
+            $query->addField($queryField2);
+        }
+        else{
+            $queryField->addExpression('Equals', $accountNames[$index]);
+            $query->addField($queryField);
+        }
         $account = $client->query($query);
         $accountID = $account->queryResult->EntityResults->Entity->id;
         $contract->AccountID = $accountID;
@@ -184,7 +196,7 @@ function processFile()
         }
         $number = 0;
         if (!is_numeric($timeReportingRequires[$index])) {
-            if (strcmp($timeReportingRequires[$index], "yes")) {
+            if (strcmp(strtolower($timeReportingRequires[$index]), "yes")) {
                 $number = 1;
             } else {
                 $number = 0;
@@ -222,8 +234,7 @@ function processFile()
             }
         }
 
-
-        if(!empty($opportunityOwners[$index])){
+        if(!empty($opportunityOwners[$index]) && strcmp($exist->queryResult->EntityResults->Entity->ContractName, $contract->ContractName)){
             $opportunity = new ATWS\AutotaskObjects\Opportunity();
             $opportunity->AccountID = $account->queryResult->EntityResults->Entity->id;
             $opportunity->Amount = 1;
@@ -238,7 +249,7 @@ function processFile()
             $opportunity->Title = "Opportunity".rand(0,100);
             $opportunity->UseQuoteTotals = false;
             $query = new ATWS\AutotaskObjects\Query('Resource');
-            $name = explode(' ', $opportunityOwners[$index]);
+            $name = explode(' ', trim($opportunityOwners[$index]));
             $queryField = new ATWS\AutotaskObjects\QueryField('FirstName');
             $queryField->addExpression('Equals', $name[0]);
             $queryField2 = new ATWS\AutotaskObjects\QueryField('LastName');
@@ -247,54 +258,75 @@ function processFile()
             $query->addField($queryField2);
             $resource = $client->query($query);
             $opportunity->OwnerResourceID = $resource->queryResult->EntityResults->Entity->id;
-            if(!empty($opportunityOwners[$index]) && strcmp($exist->queryResult->EntityResults->Entity->ContractName, $contract->ContractName)){
+            if(!empty($opportunityOwners[$index])){
                 $opportunity->UserDefinedFields = new ATWS\AutotaskObjects\ArrayOfUserDefinedField();
                 $opportunity->UserDefinedFields->UserDefinedField = array();
                 if(!empty($contractOriginator1s[$index])){
                     $udf = new ATWS\AutotaskObjects\UserDefinedField();
-                    $udf->Name = "Contract Originator 1";
-                    $udf->Value = $contractOriginator1s[$index];
+                    $udf->Name = "1st Contract Originator";
+                    $name = explode(' ', trim($contractOriginator1s[$index]));
+                    $value = $name[count($name)-1] . ',';
+                    for($i = 0; $i < (count($name)-1); $i++){
+                        $value = $value . " " . $name[$i];
+                    }
+                    $udf->Value = $value;
                     array_push($opportunity->UserDefinedFields->UserDefinedField, $udf);
                 }
                 if(!empty($contractOriginator1Percents[$index])){
                     $udf1 = new ATWS\AutotaskObjects\UserDefinedField();
-                    $udf1->Name = "Contract Originator 1 Percent";
+                    $udf1->Name = "1st Contract Originator %";
                     $udf1->Value = $contractOriginator1Percents[$index];
                     array_push($opportunity->UserDefinedFields->UserDefinedField, $udf1);
                 }
                 if(!empty($contractOriginator2s[$index])){
                     $udf2 = new ATWS\AutotaskObjects\UserDefinedField();
-                    $udf2->Name = "Contract Originator 2";
-                    $udf2->Value = $contractOriginator2s[$index];
+                    $udf2->Name = "2nd Contract Originator";
+                    $name = explode(' ', trim($contractOriginator2s[$index]));
+                    $value = $name[count($name)-1] . ',';
+                    for($i = 0; $i < (count($name)-1); $i++){
+                        $value = $value . " " . $name[$i];
+                    }
+                    $udf2->Value = $value;
                     array_push($opportunity->UserDefinedFields->UserDefinedField, $udf2);
                 }
                 if(!empty($contractOriginator2Percents[$index])){
                     $udf3 = new ATWS\AutotaskObjects\UserDefinedField();
-                    $udf3->Name = "Contract Originator 2 Percent";
+                    $udf3->Name = "2nd Contract Originator %";
                     $udf3->Value = $contractOriginator2Percents[$index];
                     array_push($opportunity->UserDefinedFields->UserDefinedField, $udf3);
                 }
                 if(!empty($contractOriginator3s[$index])){
                     $udf4 = new ATWS\AutotaskObjects\UserDefinedField();
-                    $udf4->Name = "Contract Originator 3";
-                    $udf4->Value = $contractOriginator3s[$index];
+                    $udf4->Name = "3rd Contract Originator";
+                    $name = explode(' ', trim($contractOriginator3s[$index]));
+                    $value = $name[count($name)-1] . ',';
+                    for($i = 0; $i < (count($name)-1); $i++){
+                        $value = $value . " " . $name[$i];
+                    }
+                    $udf4->Value = $value;
                     array_push($opportunity->UserDefinedFields->UserDefinedField, $udf4);
                 }
                 if(!empty($contractOriginator3Percents[$index])){
                     $udf5 = new ATWS\AutotaskObjects\UserDefinedField();
-                    $udf5->Name = "Contract Originator 3 Percent";
+                    $udf5->Name = "3rd Contract Originator %";
                     $udf5->Value = $contractOriginator3Percents[$index];
                     array_push($opportunity->UserDefinedFields->UserDefinedField, $udf5);
                 }
                 if(!empty($contractOriginator4s[$index])){
                     $udf6 = new ATWS\AutotaskObjects\UserDefinedField();
-                    $udf6->Name = "Contract Originator 4";
+                    $udf6->Name = "4th Contract Originator";
+                    $name = explode(' ', trim($contractOriginator4s[$index]));
+                    $value = $name[count($name)-1] . ',';
+                    for($i = 0; $i < (count($name)-1); $i++){
+                        $value = $value . " " . $name[$i];
+                    }
+                    $udf6->Value = $value;
                     $udf6->Value = $contractOriginator4s[$index];
                     array_push($opportunity->UserDefinedFields->UserDefinedField, $udf6);
                 }
                 if(!empty($contractOriginator4Percents[$index])){
                     $udf7 = new ATWS\AutotaskObjects\UserDefinedField();
-                    $udf7->Name = "Contract Originator 4 Percent";
+                    $udf7->Name = "4th Contract Originator %";
                     $udf7->Value = $contractOriginator4Percents[$index];
                     array_push($opportunity->UserDefinedFields->UserDefinedField, $udf7);
                 }
@@ -339,9 +371,14 @@ fields have been completed and the type of information in each field is correct.
                     $contractRate = new ATWS\AutotaskObjects\ContractRate();
                     $info = explode('|', $rate);
                     $query1 = new ATWS\AutotaskObjects\Query('Role');
-                    $queryField1 = new ATWS\AutotaskObjects\QueryField('Name');
-                    $queryField1->addExpression('Equals', $info[0]);
-                    $query1->addField($queryField1);
+                    $queryField1 = new ATWS\AutotaskObjects\QueryField('Description');
+                    $queryField1->addExpression('BeginsWith', $info[0]);
+                    $queryField2 = new ATWS\AutotaskObjects\QueryField('Name');
+                    $queryField2->addExpression('Equals', $info[0]);
+                    $queryCondition = new ATWS\AutotaskObjects\QueryCondition('OR');
+                    $queryCondition->addField($queryField1);
+                    $query1->addField($queryField2);
+                    $query1->addCondition($queryCondition);
                     $role = $client->query($query1);
                     $contractRate->RoleID = $role->queryResult->EntityResults->Entity->id;
                     $contractRate->ContractHourlyRate = $info[1];
@@ -617,7 +654,8 @@ function removeEmpty($item){
                 }
             }
         } elseif($var != "AccountID" && $var != "EstimatedHours" && $var != "EstimatedCost" && $var != "EstimatedRevenue" &&
-            $var != "id" && $var != "IsPaid" && $var != "IsInitialPayment" && $var != "SetupFee") {
+            $var != "id" && $var != "IsPaid" && $var != "IsInitialPayment" && $var != "SetupFee" &&
+            $var != "TimeReportingRequiresStartAndStopTimes") {
             if (empty($value)) {
                 try {
                     unset($item->{$var});

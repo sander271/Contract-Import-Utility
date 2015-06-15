@@ -11,6 +11,9 @@ session_start();
 foreach ($_REQUEST as $key => $value){
     $_SESSION[$key] = $value;
 }
+$_SESSION['index'] = 0;
+$_SESSION['max'] = 0;
+//print_r($_SESSION);
 ?>
 <!doctype html>
 <html lang="en">

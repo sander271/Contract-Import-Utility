@@ -91,6 +91,7 @@ uploadFile();
     <br/>
     <h2>Depending on how many contracts you are importing this may take a while, please wait.</h2>
     <br/>
+    <div id="end"></div>
     <div id="progressbar"></div>
     <div id="myDiv0"></div>
     <div id="myDiv1"></div>

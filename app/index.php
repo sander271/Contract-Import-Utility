@@ -44,6 +44,14 @@ session_start();
             padding-top: 3em;
         }
     </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+        function download(){
+            window.open("download.php");
+        }
+    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -58,5 +66,9 @@ session_start();
             <input type="submit" value="Submit" name="submit">
         </fieldset>
     </form>
+
+    <h2>Click below to download the import file template.</h2>
+    <button type="button" onclick="download()">Download</button>
+    <div id="link"></div>
 </body>
 </html>

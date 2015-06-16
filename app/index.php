@@ -6,6 +6,7 @@
  * Time: 2:13 PM
  */
 session_start();
+//print_r($_SESSION);
 ?>
 <!doctype html>
 <html lang="en">

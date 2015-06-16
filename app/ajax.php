@@ -1,9 +1,10 @@
 <?php
 set_time_limit(0);
 session_start();
+$uploadOk = 0;
 //print_r($_SESSION);
 function uploadFile(){
-    global $success;
+    global $success, $uploadOk;
     $target_dir = "CSV/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
@@ -11,17 +12,17 @@ function uploadFile(){
     $success = false;
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 5000000) {
-        echo "Sorry, your file is too large.";
+        echo "<h1>Sorry, your file is too large.</h1>";
         $uploadOk = 0;
     }
     // Allow certain file formats
     if($fileType != "csv") {
-        echo "Sorry, only csv files are allowed." . "<br/>";
+        echo "<h1>Sorry, only csv files are allowed.</h1>" . "<br/>";
         $uploadOk = 0;
     }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
+        echo "<h1>Sorry, your file was not uploaded.</h1>";
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -79,17 +80,27 @@ uploadFile();
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script>
         function runBar(){
-            $(function() {
-                $( "#progressbar" ).progressbar({
-                    value: false
-                });
-            });
+            <?php
+            global $uploadOk;
+            if($uploadOk){
+                echo "$(function() {
+                        $( \"#progressbar\" ).progressbar({
+                            value: false
+                        });
+                    });";
+            }
+            ?>
         }
     </script>
 </head>
 <body onload="runBar()">
     <br/>
-    <h2>Depending on how many contracts you are importing this may take a while, please wait.</h2>
+    <?php
+    global $uploadOk;
+    if($uploadOk){
+        echo "<h2>Depending on how many contracts you are importing this may take a while, please wait.</h2>";
+    }
+    ?>
     <br/>
     <div id="end"></div>
     <div id="progressbar"></div>
@@ -134,7 +145,10 @@ uploadFile();
     <div id="myDiv38"></div>
     <div id="myDiv39"></div>
     <div id="myDiv40"></div>
-    <?php echo"
+    <?php
+    global $uploadOk;
+    if($uploadOk){
+        echo"
         <script>
         var index = 0;
         function check(){
@@ -153,6 +167,7 @@ uploadFile();
         check();
         var myVar = setInterval(check, 25000);
     </script>";
+    }
     ?>
 </body>
 </html>

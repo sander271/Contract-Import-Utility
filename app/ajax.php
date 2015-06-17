@@ -74,6 +74,10 @@ uploadFile();
         form{
             padding-top: 3em;
         }
+
+        .error{
+            color: red;
+        }
     </style>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

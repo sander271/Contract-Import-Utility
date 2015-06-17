@@ -98,7 +98,7 @@ function processFile()
         $exist = $client->query($query);
 
         if (!strcmp($exist->queryResult->EntityResults->Entity->ContractName, $contract->ContractName)) {
-            echo "<h2>Error: {$contract->ContractName} is a contract that already exists.</h2>";
+            echo "<h2>Error: {$contract->ContractName} is a contract that already exists for the selected account.</h2>";
         }
         else{
             $allowedPeriodType = true;
@@ -125,7 +125,7 @@ function processFile()
                     $contract->ContractType = 3;
                     break;
                 default:
-                    echo "<h2>Error: Your Contract Type in column {$actualAddress} is not one of the accepted values.</h2>";
+                    echo "<h2 class='error'>Error: Your Contract Type in column {$actualAddress} is not one of the accepted values.</h2>";
                     printExit();
                     exit(1);
                     break;
@@ -144,7 +144,7 @@ function processFile()
                 default:
                     if($contract->ContractType == 1 || $contract->ContractType == 4 || $contract->ContractType == 6 ||
                         $contract->ContractType == 8){
-                        echo "<h2>Error: Your Billing Preference in column {$actualAddress} is not one of the accepted
+                        echo "<h2 class='error'>Error: Your Billing Preference in column {$actualAddress} is not one of the accepted
  values.</h2>";
                         printExit();
                         exit(1);
@@ -169,7 +169,7 @@ function processFile()
                         break;
                     default:
                         if($contract->ContractType == 7){
-                            echo "<h2>Error: Your Contract Period Type in column {$actualAddress} is not one of the
+                            echo "<h2 class='error'>Error: Your Contract Period Type in column {$actualAddress} is not one of the
 accepted values.</h2>";
                             printExit();
                             exit(1);
@@ -178,8 +178,24 @@ accepted values.</h2>";
                 }
             }
             $contract->Description = $descriptions[$index];
-            $endDate = new DateTime(trim($endDates[$index]), new DateTimeZone('America/New_York'));
-            $contract->EndDate = $endDate->format(DateTime::W3C);
+            try{
+                $endDate = new DateTime(trim($endDates[$index]), new DateTimeZone('America/New_York'));
+                $contract->EndDate = $endDate->format(DateTime::W3C);
+            }
+            catch (Exception $e){
+                switch($e->getCode()){
+                    case 0:
+                        echo "<h2 class='error'>Error: The End Date in column {$actualAddress} is formatted incorrectly.</h2>";
+                        printExit();
+                        exit(1);
+                        break;
+                    default:
+                        echo "<h2 class='error'>Error: An unrecorded error has occured with the End Date in column {$actualAddress}.</h2>";
+                        printExit();
+                        exit(1);
+                        break;
+                }
+            }
             switch (strtolower(trim($isDefaultContracts[$index]))) {
                 case "yes":
                     $contract->IsDefaultContract = true;
@@ -191,8 +207,24 @@ accepted values.</h2>";
                     $contract->IsDefaultContract = false;
                     break;
             }
-            $startDate = new DateTime(trim($startDates[$index]), new DateTimeZone('America/New_York'));
-            $contract->StartDate = $startDate->format(DateTime::W3C);
+            try{
+                $startDate = new DateTime(trim($startDates[$index]), new DateTimeZone('America/New_York'));
+                $contract->StartDate = $startDate->format(DateTime::W3C);
+            }
+            catch (Exception $e){
+                switch($e->getCode()){
+                    case 0:
+                        echo "<h2 class='error'>Error: The Start Date in column {$actualAddress} is formatted incorrectly.</h2>";
+                        printExit();
+                        exit(1);
+                        break;
+                    default:
+                        echo "<h2 class='error'>Error: An unrecorded error has occured with the Start Date in column {$actualAddress}.</h2>";
+                        printExit();
+                        exit(1);
+                        break;
+                }
+            }
             if($contract->ContractType == 7){
                 if(empty($setupFees[$index])){
                     $contract->SetupFee = 0;
@@ -245,18 +277,26 @@ accepted values.</h2>";
             $contract->id = 0;
             $newContract = $client->create($contract);
             if($newContract->createResult->ReturnCode != 1){
-                print_r($newContract->createResult->Errors->ATWSError->Message);
+//                print_r($newContract->createResult->Errors->ATWSError->Message);
                 printExit();
                 switch($newContract->createResult->Errors->ATWSError->Message){
                     case "Value does not exist for the required field AccountID. ; on record number [1].":
-                        echo "<h2>Error: The Customer Name field is not correct. Check column number {$actualAddress}.</h2>";
+                        echo "<h2 class='error'>Error: The Customer Name field is not correct. Check column number {$actualAddress}.</h2>";
+                        exit(1);
                         break;
                     case "Contract EndDate must be after StartDate.":
-                        echo "<h2>Error: Contract EndDate must be after StartDate in column {$actualAddress}.</h2>";
+                        echo "<h2 class='error'>Error: Contract EndDate must be after StartDate in column {$actualAddress}.</h2>";
+                        exit(1);
                         break;
                     case "Conversion from type 'Object' to type 'String' is not valid.":
-                        echo "<h2>Error: An error has occurred in column {$actualAddress}, check to make sure that all required
+                        echo "<h2 class='error'>Error: An error has occurred in column {$actualAddress}, check to make sure that all required
 fields have been completed and the type of information in each field is correct.</h2>";
+                        exit(1);
+                        break;
+                    default:
+                        echo "<h2 class='error'>Error: An unrecorded error has occurred in column {$actualAddress}, check
+to make sure you have filled out all required information correctly.</h2>";
+                        exit(1);
                         break;
                 }
             }
@@ -273,14 +313,9 @@ fields have been completed and the type of information in each field is correct.
                         $info = explode('|', trim($rate));
 
                         $query1 = new ATWS\AutotaskObjects\Query('Role');
-//                        $queryField1 = new ATWS\AutotaskObjects\QueryField('Description');
-//                        $queryField1->addExpression('BeginsWith', trim($info[0]));
                         $queryField1 = new ATWS\AutotaskObjects\QueryField('Name');
                         $queryField1->addExpression('Equals', trim($info[0]));
-//                        $queryCondition = new ATWS\AutotaskObjects\QueryCondition('OR');
-//                        $queryCondition->addField($queryField1);
                         $query1->addField($queryField1);
-//                        $query1->addCondition($queryCondition);
                         $role = $client->query($query1);
 
                         $contractRate->RoleID = $role->queryResult->EntityResults->Entity->id;
@@ -289,18 +324,36 @@ fields have been completed and the type of information in each field is correct.
                         $contractRate->ContractID = $createdContract->id;
                         $creation = $client->create($contractRate);
                         if($creation->createResult->ReturnCode != 1){
-                            print_r($creation->createResult->Errors->ATWSError->Message);
+//                            print_r($creation->createResult->Errors->ATWSError->Message);
                             printExit();
                             switch($creation->createResult->Errors->ATWSError->Message){
                                 case "Value does not exist for the required field RoleID. ; on record number [1].":
-                                    echo "<h2>Error: The Role Name in column {$actualAddress} is not an existing Role Name.
+                                    echo "<h2 class='error'>Error: The Role Name in column {$actualAddress} is not an existing Role Name.
 To fix this you must first delete the {$contract->ContractName} contract from Autotask that you were trying to add this to,
  and then reload the import file with a correct Role Name.</h2>";
+                                    printExit();
+                                    exit(1);
                                     break;
                                 case "Can not convert data to numeric in field: ContractHourlyRate. ; on record number [1].":
-                                    echo "<h2>Error: The Contract Hourly Billing Rate in column {$actualAddress} is incorrect.
+                                    echo "<h2 class='error'>Error: The Contract Hourly Billing Rate in column {$actualAddress} is incorrect.
 Make sure it is a numeric value. To fix this you must first delete the {$contract->ContractName} contract from Autotask,
 then reload the import file with a correct Contract Hourly Billing Rate.</h2>";
+                                    printExit();
+                                    exit(1);
+                                    break;
+                                case "Conversion from type 'Object' to type 'String' is not valid.":
+                                    echo "<h2 class='error'>Error: There is a mistake with the Role Rate in column
+{$actualAddress}. To fix this you must first delete the {$contract->ContractName} contract from Autotask,then reload
+ the import file with a correct Role Rate.</h2>";
+                                    printExit();
+                                    exit(1);
+                                    break;
+                                default:
+                                    echo "<h2 class='error'>Error: An unrecorded error has occurred with the Role Rate
+in column {$actualAddress}. To fix this you must first delete the {$contract->ContractName} contract from Autotask,
+then reload the import file with a correct Role Rate.</h2>";
+                                    printExit();
+                                    exit(1);
                                     break;
                             }
                         }
@@ -330,19 +383,30 @@ then reload the import file with a correct Contract Hourly Billing Rate.</h2>";
                             removeEmpty($contractService);
                             $creation = $client->create($contractService);
                             if($creation->createResult->ReturnCode != 1){
-                                print_r($creation);
+//                                print_r($creation);
                                 printExit();
-                                print_r($creation->createResult->Errors->ATWSError->Message);
+//                                print_r($creation->createResult->Errors->ATWSError->Message);
                                 switch($creation->createResult->Errors->ATWSError->Message){
                                     case "Value does not exist for the required field ServiceID. ; on record number [1].":
-                                        echo "<h2>Error: The Service Name for the Recurring Service in column {$actualAddress} is
+                                        echo "<h2 class='error'>Error: The Service Name for the Recurring Service in column {$actualAddress} is
  not an existing service. To fix this you must first delete the {$contract->ContractName} contract from Autotask
   and then reload the import file with a correct Service Name.</h2>";
+                                        printExit();
+                                        exit(1);
                                         break;
                                     case "ContractServiceAdjustment must have a value for at least one of the following: UnitChange, AdjustedUnitPrice, or AdjustedUnitCost.":
-                                        echo "<h2>Error: For the Recurring Service in column {$actualAddress}, you must
+                                        echo "<h2 class='error'>Error: For the Recurring Service in column {$actualAddress}, you must
 have a value for at least one of the following: Unit Cost, Unit Price, Units. To fix this you must first delete
  the {$contract->ContractName} contract from Autotask and then reload the import file with a correct Recurring Service.</h2>";
+                                        printExit();
+                                        exit(1);
+                                        break;
+                                    default:
+                                        echo "<h2 class='error'>Error: An unrecorded error has occurred with the Recurring
+Services in cloumn {$actualAddress}. To fix this you must first delete the {$contract->ContractName} contract from Autotask,
+then reload the import file with a correct Recurring Service.</h2>";
+                                        printExit();
+                                        exit(1);
                                         break;
                                 }
                             }
@@ -369,22 +433,35 @@ have a value for at least one of the following: Unit Cost, Unit Price, Units. To
                             removeEmpty($blockHourRate);
                             $creation = $client->create($blockHourRate);
                             if($creation->createResult->ReturnCode != 1){
-                                print_r($creation->createResult->Errors->ATWSError->Message);
+//                                print_r($creation->createResult->Errors->ATWSError->Message);
                                 switch($creation->createResult->Errors->ATWSError->Message){
                                     case "Value does not exist for the required field RoleID. ; on record number [1].":
-                                        echo "<h2>Error: The Role Name for the Block Hour Rates in column {$actualAddress}
+                                        echo "<h2 class='error'>Error: The Role Name for the Block Hour Rates in column {$actualAddress}
 does not exist. To fix this you must first delete the {$contract->ContractName} contract from Autotask and then
 reload the import file with a correct Role Name in the Block Hour Rates.</h2>";
+                                        printExit();
+                                        exit(1);
                                         break;
                                     case "Missing Required Field: BlockHourFactor. ; on record number [1].":
-                                        echo "<h2>Error: You are missing a Contract Block Hour Multiplier for the Block Hour
+                                        echo "<h2 class='error'>Error: You are missing a Contract Block Hour Multiplier for the Block Hour
 Rates in column {$actualAddress}. To fix this you must first delete the {$contract->ContractName} contract from Autotask
  and then reload the import file with a correct Contract Block Hour Multiplier in the Block Hour Rates.</h2>";
+                                        printExit();
+                                        exit(1);
                                         break;
                                     case "Can not convert data to numeric in field: BlockHourFactor. ; on record number [1].":
-                                        echo "<h2>Error: The Contract Block Hour Multiplier for the Block Hour Rates in column
+                                        echo "<h2 class='error'>Error: The Contract Block Hour Multiplier for the Block Hour Rates in column
 {$actualAddress} must be a numeric value. To fix this you must first delete the {$contract->ContractName} contract from
  Autotask and then reload the import file with a correct Contract Block Hour Multiplier in the Block Hour Rates.</h2>";
+                                        printExit();
+                                        exit(1);
+                                        break;
+                                    default:
+                                        echo "<h2 class='error'>Error: An unrecorded error has occurred with the Block
+Hour Rates in column {$actualAddress}. To fix this you must first delete the {$contract->ContractName} contract from Autotask,
+then reload the import file with a correct Block Hour Rate.</h2>";
+                                        printExit();
+                                        exit(1);
                                         break;
                                 }
                             }
@@ -414,20 +491,29 @@ Rates in column {$actualAddress}. To fix this you must first delete the {$contra
                                     $blockHourPurchase->Status = 0;
                                     break;
                                 default:
-                                    echo "<h2>Error: The Block Hour Purchase active field in {$actualAddress} can only be
- true or false.</h2>";
+                                    echo "<h2 class='error'>Error: The Block Hour Purchase active field in {$actualAddress} can only be
+ true or false. To fix this you must first delete the {$contract->ContractName} contract from Autotask,
+then reload the import file with a correct Block Hour Purchase active field.</h2>";
+                                    printExit();
                                     exit(1);
                             }
                             removeEmpty($blockHourPurchase);
                             $creation = $client->create($blockHourPurchase);
                             if($creation->createResult->ReturnCode != 1){
-                                print_r($creation->createResult->Errors->ATWSError->Message);
+//                                print_r($creation->createResult->Errors->ATWSError->Message);
                                 printExit();
                                 switch($creation->createResult->Errors->ATWSError->Message){
                                     case "Missing Required Field: HourlyRate. ; on record number [1].":
-                                        echo "<h2>Error: You are missing a Hourly Rate in the Block Hour Purchases in column
+                                        echo "<h2 class='error'>Error: You are missing a Hourly Rate in the Block Hour Purchases in column
 {$actualAddress}. To fix this you must first delete the {$contract->ContractName} contract from Autotask and then reload
  the import file with a correct Hourly Rate in the Block Hour Purchases.</h2>";
+                                        exit(1);
+                                        break;
+                                    default:
+                                        echo "<h2 class='error'>Error: An unrecorded error has occurred with the Block
+Hour Purchases in column {$actualAddress}. To fix this you must first delete the {$contract->ContractName} contract from Autotask,
+then reload the import file with a correct Block Hour Purchase.</h2>";
+                                        exit(1);
                                         break;
                                 }
                             }
@@ -457,7 +543,9 @@ Rates in column {$actualAddress}. To fix this you must first delete the {$contra
                                     $retainerPurchase->Status = 0;
                                     break;
                                 default:
-                                    echo "<h2>Error: A Retainer Purchase active field can only be true or false.</h2>";
+                                    echo "<h2 class='error'>Error: A Retainer Purchase active field can only be true or false. To fix this you must first delete the {$contract->ContractName} contract from Autotask,
+then reload the import file with a correct Retainer Purchase active field.</h2>";
+                                    printExit();
                                     exit(1);
                             }
                             $retainerPurchase->Amount = trim($info[2]);
@@ -465,7 +553,15 @@ Rates in column {$actualAddress}. To fix this you must first delete the {$contra
                             $creation = $client->create($retainerPurchase);
                             if($creation->createResult->ReturnCode != 1){
                                 printExit();
-                                print_r($creation->createResult->Errors->ATWSError->Message);
+//                                print_r($creation->createResult->Errors->ATWSError->Message);
+                                switch($creation->createResult->Errors->ATWSError->Message){
+                                    default:
+                                        echo "<h2 class='error'>Error: An unrecorded error has occurred with the Retainer Purchases
+in column {$actualAddress}.</h2>";
+                                        printExit();
+                                        exit(1);
+                                        break;
+                                }
                             }
                         }
                     }
@@ -493,7 +589,7 @@ Rates in column {$actualAddress}. To fix this you must first delete the {$contra
                                     $contractTicket->Status = 0;
                                     break;
                                 default:
-                                    echo "<h2>Error: A Ticket Purchase active field can only be true or false.</h2>";
+                                    echo "<h2 class='error'>Error: A Ticket Purchase active field can only be true or false.</h2>";
                                     printExit();
                                     exit(1);
                             }
@@ -503,7 +599,14 @@ Rates in column {$actualAddress}. To fix this you must first delete the {$contra
                             $creation = $client->create($contractTicket);
                             if($creation->createResult->ReturnCode != 1){
                                 printExit();
-                                print_r($creation->createResult->Errors->ATWSError->Message);
+//                                print_r($creation->createResult->Errors->ATWSError->Message);
+                                switch($creation->createResult->Errors->ATWSError->Message){
+                                    default:
+                                        echo "<h2 class='error'>Error: An unrecorded error has occurred with the Ticket
+Purchases in column {$actualAddress}.</h2>";
+                                        exit(1);
+                                        break;
+                                }
                             }
                         }
                     }
@@ -540,14 +643,22 @@ Rates in column {$actualAddress}. To fix this you must first delete the {$contra
                                     $contractMilestone->Status = 3;
                                     break;
                                 default:
-                                    echo "<h2>Error: The Milestone Status is not one of the accepted values.</h2>";
+                                    echo "<h2 class='error'>Error: The Milestone Status is not one of the accepted values.</h2>";
+                                    printExit();
                                     exit(1);
                             }
                             removeEmpty($contractMilestone);
                             $creation = $client->create($contractMilestone);
                             if($creation->createResult->ReturnCode != 1){
                                 printExit();
-                                print_r($creation->createResult->Errors->ATWSError->Message);
+//                                print_r($creation->createResult->Errors->ATWSError->Message);
+                                switch($creation->createResult->Errors->ATWSError->Message){
+                                    default:
+                                        echo "<h2 class='error'>Error: An unrecorded error has occurred with the Milestones
+in column {$actualAddress}.</h2>";
+                                        exit(1);
+                                        break;
+                                }
                             }
                         }
                     }
@@ -628,6 +739,9 @@ function printExit(){
         }
         form{
             padding-top: 3em;
+        }
+        .error{
+            color: red;
         }
     </style>
     <?php
